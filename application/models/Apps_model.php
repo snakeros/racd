@@ -1,5 +1,5 @@
 <?php
-class Blog_model extends CI_Model {
+class Apps_model extends CI_Model {
 
         public $title;
         public $content;
@@ -17,8 +17,9 @@ class Blog_model extends CI_Model {
 
     $data = array(
         'title' => $this->input->post('title'),
-        'text' => $this->input->post('text');
+        'description' => $this->input->post('description');
         'works' => $this->input->post('works');
+      //  'version' => $this->input->post('version');
     );
 
     return $this->db->insert('apps', $data);

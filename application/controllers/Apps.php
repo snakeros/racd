@@ -7,9 +7,6 @@ class Application extends CI_Controller{
         $this->load->model('apps');
         $data['query'] = $this->apps->read();
         $this->load->view('apps', $data);
-
-
-
     }
     
     public function edit(){
@@ -20,18 +17,21 @@ class Application extends CI_Controller{
         $this->load->helper('form');
     $this->load->library('form_validation');
 
-    $data['title'] = 'Create a new application';
+     
 
     $this->form_validation->set_rules('title', 'Title', 'required');
-    $this->form_validation->set_rules('text', 'Text', 'required');
+    $this->form_validation->set_rules('description', 'Description', 'required');
 
     if ($this->form_validation->run() === FALSE)
     {
+        $this->load->view('parts/header');
         $this->load->view('apps/create');
+        $this->load->view('parts/footer');
     }
     else
     {
-        $this->news_model->set_news();
+         $this->load->view('parts/header');
+        $this->apps_model->create();
         $this->load->view('apps/success');
     }
     }
